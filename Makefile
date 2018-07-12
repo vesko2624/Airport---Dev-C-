@@ -1,12 +1,21 @@
-ObjDir = bin/Objects
+ObjDir = bin/objects
 HeadersDir = src/Headers
 ClassesDir = src/Classes
 
-OBJECTS = $(ObjDir)/Airport.o $(ObjDir)/Counter.o $(ObjDir)/Date.o $(ObjDir)/FlightData.o $(ObjDir)/FlightInfo.o $(ObjDir)/main.o $(ObjDir)/Menu_func.o $(ObjDir)/PathFinder.o $(ObjDir)/Recorder.o $(ObjDir)/Route.o $(ObjDir)/UserData.o $(ObjDir)/UserInfo.o
-clean:
-	-rm -f $(OBJECTS)
+create:
+	-if not exist bin mkdir bin\objects
+	-if not exist src\DataBase mkdir src\DataBase
+	-if not exist src\DataBase\"Flight_Records.txt" type NULL > src\DataBase\Flight_Records.txt
+	-if not exist src\DataBase\"User_Records.txt" type NULL > src\DataBase\User_Records.txt
 
-all: $(OBJECTS)
+OBJECTS := $(ObjDir)/Airport.o $(ObjDir)/Counter.o $(ObjDir)/Date.o $(ObjDir)/FlightData.o $(ObjDir)/FlightInfo.o $(ObjDir)/main.o $(ObjDir)/Menu_func.o $(ObjDir)/PathFinder.o $(ObjDir)/Recorder.o $(ObjDir)/Route.o $(ObjDir)/UserData.o $(ObjDir)/UserInfo.o
+
+clean:
+	-del /S/Q bin
+	-del /S/Q bin\objects
+	-del /S/Q src\DataBase
+
+all: create $(OBJECTS)
 	$(CXX) -o bin/Airport $(OBJECTS)
 
 $(ObjDir)/main.o: main.cpp $(ClassesDir)/Menu_func.h
