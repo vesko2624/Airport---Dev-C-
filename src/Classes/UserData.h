@@ -22,7 +22,7 @@ class UserData{
 		vector<UserInfo> get_users_by_departure_city(string city);
 		vector<UserInfo> get_users_by_arrival_city(string city);
 		vector<UserInfo>& get_users();
-		int getsize();
+		int get_size();
 	private:
 		vector<UserInfo> users_;
 		Counter counter_;

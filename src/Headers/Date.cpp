@@ -3,25 +3,20 @@
 
 // Constructors
 Date::Date(){
-	Day_ = 0;
-	Month_ = 0;
-	Year_ = 0;
-	Hour_ = 0;
-	Minute_ = 0;
+	day_ = 31;
+	month_ = 12;
+	year_ = 2100;
+	hour_ = 23;
+	minute_ = 59;
 }
-Date::Date(int day, int month, int year, int hour, int minute){
-	Day_ = day;
-	Month_ = month;
-	Year_ = year;
-	Hour_ = hour;
-	Minute_ = minute;
+Date::Date(const int& day, const int& month, const int& year, const int& hour, const int& minute): day_(day), month_(month), year_(year), hour_(hour), minute_(minute){
 }
 
 
 // Methods
 void Date::display() const{
-	cout << Day_ << ". " << Month_ << ". " << Year_ << " year - " 
-		<< Hour_ << " : " << Minute_ << '\n';
+	cout << day_ << ". " << month_ << ". " << year_ << " year - " 
+		<< hour_ << " : " << minute_ << '\n';
 }
 bool Date::read(){
 	int day, month, year, hour, minute;
@@ -42,22 +37,22 @@ bool Date::read(){
 
 
 // Getters and/or Setters
-void Date::set_date(int day, int month, int year, int hour, int minute){
-	Day_ = day;
-	Month_ = month;
-	Year_ = year;
-	Hour_ = hour;
-	Minute_ = minute;
+void Date::set_date(const int& day, const int& month, const int& year, const int& hour, const int& minute){
+	day_ = day;
+	month_ = month;
+	year_ = year;
+	hour_ = hour;
+	minute_ = minute;
 }
 
 string Date::get_as_string(){
 	string date_string;
 
-	string day_as_string = get<string>(Day_);
-	string month_as_string = get<string>(Month_);
-	string year_as_string = get<string>(Year_);
-	string hour_as_string = get<string>(Hour_);
-	string minute_as_string = get<string>(Minute_);
+	string day_as_string = get<string>(day_);
+	string month_as_string = get<string>(month_);
+	string year_as_string = get<string>(year_);
+	string hour_as_string = get<string>(hour_);
+	string minute_as_string = get<string>(minute_);
 
 	date_string = day_as_string + " " 
 		+ month_as_string + " "
@@ -66,4 +61,15 @@ string Date::get_as_string(){
 		+ minute_as_string;	
 
 	return date_string;
+}
+
+
+// Opearators overloading
+bool operator<(const Date& date1, const Date& date2){
+	if(date1.year_ < date2.year_) return true;
+	if(date1.month_ < date2.month_) return true;
+	if(date1.day_ < date2.day_) return true;
+	if(date1.hour_ < date2.hour_) return true;
+	if(date1.minute_ < date2.minute_) return true;
+	return false;
 }

@@ -31,6 +31,7 @@ bool UserInfo::read(){
 	if(!valid) cout << "You've entered invalid information, it cannot be saved\n"; // ADD ERROR CODES;
 	return valid;
 }
+
 void UserInfo::display(){
 	cout << "Request id:\t\t" << TABS << id_ << '\n';  
 	cout << "User name:\t\t\t\t" << name_ << '\n';
@@ -47,6 +48,7 @@ void UserInfo::display(){
 	cout << "Arrives not later than:\t" << TABS;
 	arrival_time_.display();
 }
+
 Route UserInfo::get_user_request(){
 	Route route;
 	route.set_departure(route_.get_departure());

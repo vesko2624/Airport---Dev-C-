@@ -31,7 +31,7 @@ bool FlightInfo::read(){
 	return valid;
 }
 
-void FlightInfo::display(){
+void FlightInfo::display() const{
 	cout << "Flight id:" << TABS << id_ << '\n';  
 	
 	cout << "Flying from:"<< TABS ;
@@ -48,6 +48,18 @@ void FlightInfo::display(){
 	
 	cout << "Price:	"<< TABS << price_ << '\n';
 }
-Route FlightInfo::get_route(){
+
+
+// Getters
+Route FlightInfo::get_route() const{
 	return route_;
+}
+Date FlightInfo::get_departure_time() const{
+	return departure_time_;
+}
+Date FlightInfo::get_arrival_time() const{
+	return arrival_time_;
+}
+double FlightInfo::get_price() const{
+	return price_;
 }

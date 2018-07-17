@@ -8,7 +8,21 @@ create:
 	-if not exist src\DataBase\"Flight_Records.txt" type NULL > src\DataBase\Flight_Records.txt
 	-if not exist src\DataBase\"User_Records.txt" type NULL > src\DataBase\User_Records.txt
 
+
+Airport = $(HeadersDir)/Airport.cpp src/Airport.h
+Date = $(Airport) $(HeadersDir)/Date.cpp $(ClassesDir)/Date.h
+Route = $(HeadersDir)/Route.cpp $(ClassesDir)/Route.h
+FlightInfo = $(Airport) $(Route) $(Date) $(HeadersDir)/FlightInfo.cpp $(ClassesDir)/FlightInfo.h
+UserInfo = $(Airport) $(Route) $(Date) $(HeadersDir)/UserInfo.cpp $(ClassesDir)/UserInfo.h
+Counter = $(FlightInfo) $(UserInfo) $(HeadersDir)/Counter.cpp $(ClassesDir)/Counter.h
+Recorder = $(HeadersDir)/Recorder.cpp $(ClassesDir)/Recorder.h $(HeadersDir)/FlightData.cpp $(ClassesDir)/FlightData.h $(HeadersDir)/UserData.cpp $(ClassesDir)/UserData.h $(Counter) $(FlightInfo) $(UserInfo)
+FlightData = $(Airport) $(Recorder)
+UserData = $(Airport) $(Recorder)
+PathFinder = $(Airport) $(FlightData) $(HeadersDir)/PathFinder.cpp $(ClassesDir)/PathFinder.h
+Menu = $(Airport) $(PathFinder) $(Recorder) $(HeadersDir)/Menu_func.cpp $(ClassesDir)/Menu_func.h
+Main = $(Airport) $(Menu)
 OBJECTS := $(ObjDir)/Airport.o $(ObjDir)/Counter.o $(ObjDir)/Date.o $(ObjDir)/FlightData.o $(ObjDir)/FlightInfo.o $(ObjDir)/main.o $(ObjDir)/Menu_func.o $(ObjDir)/PathFinder.o $(ObjDir)/Recorder.o $(ObjDir)/Route.o $(ObjDir)/UserData.o $(ObjDir)/UserInfo.o
+Flags = -std=c++0x
 
 clean:
 	-del /S/Q bin
@@ -16,40 +30,40 @@ clean:
 	-del /S/Q src\DataBase
 
 all: create $(OBJECTS)
-	$(CXX) -o bin/Airport $(OBJECTS)
+	$(CXX) $(Flags) -o bin/Airport $(OBJECTS)
 
-$(ObjDir)/main.o: main.cpp $(ClassesDir)/Menu_func.h
-	$(CXX) -c main.cpp -o $(ObjDir)/main.o
+$(ObjDir)/main.o: $(Main)
+	$(CXX) $(Flags) -c main.cpp -o $(ObjDir)/main.o
 
-$(ObjDir)/Airport.o: src/Airport.h $(HeadersDir)/Airport.cpp
-	$(CXX) -c $(HeadersDir)/Airport.cpp -o $(ObjDir)/Airport.o
+$(ObjDir)/Airport.o: $(Airport)
+	$(CXX) $(Flags) -c $(HeadersDir)/Airport.cpp -o $(ObjDir)/Airport.o
 
-$(ObjDir)/Counter.o: $(ClassesDir)/Counter.h $(ClassesDir)/Counter.h $(ClassesDir)/FlightInfo.h $(ClassesDir)/UserInfo.h
-	$(CXX) -c $(HeadersDir)/Counter.cpp -o $(ObjDir)/Counter.o
+$(ObjDir)/Counter.o: $(Airport)
+	$(CXX) $(Flags) -c $(HeadersDir)/Counter.cpp -o $(ObjDir)/Counter.o
 
-$(ObjDir)/Date.o: src/Airport.h $(HeadersDir)/Airport.cpp $(ClassesDir)/Date.h $(HeadersDir)/Date.cpp
-	$(CXX) -c $(HeadersDir)/Date.cpp -o $(ObjDir)/Date.o
+$(ObjDir)/Date.o: $(Date)
+	$(CXX) $(Flags) -c $(HeadersDir)/Date.cpp -o $(ObjDir)/Date.o
 
-$(ObjDir)/FlightData.o: src/Airport.h $(HeadersDir)/Airport.cpp $(ClassesDir)/FlightData.h $(HeadersDir)/FlightData.cpp $(ClassesDir)/Counter.h $(HeadersDir)/Counter.cpp $(ClassesDir)/FlightInfo.h $(HeadersDir)/FlightInfo.cpp
-	$(CXX) -c $(HeadersDir)/FlightData.cpp -o $(ObjDir)/FlightData.o
+$(ObjDir)/FlightData.o: $(FlightData)
+	$(CXX) $(Flags) -c $(HeadersDir)/FlightData.cpp -o $(ObjDir)/FlightData.o
 
-$(ObjDir)/FlightInfo.o: src/Airport.h $(HeadersDir)/Airport.cpp $(ClassesDir)/FlightInfo.h $(HeadersDir)/FlightInfo.cpp $(ClassesDir)/Route.h $(HeadersDir)/Route.cpp $(ClassesDir)/Date.h $(HeadersDir)/Date.cpp
-	$(CXX) -c $(HeadersDir)/FlightInfo.cpp -o $(ObjDir)/FlightInfo.o
+$(ObjDir)/FlightInfo.o: $(FlightInfo)
+	$(CXX) $(Flags) -c $(HeadersDir)/FlightInfo.cpp -o $(ObjDir)/FlightInfo.o
 
-$(ObjDir)/Menu_func.o: src/Airport.h $(HeadersDir)/Airport.cpp $(ClassesDir)/Menu_func.h $(HeadersDir)/Menu_func.cpp $(ClassesDir)/FlightData.h $(HeadersDir)/FlightData.cpp $(ClassesDir)/UserData.h $(HeadersDir)/UserData.cpp $(ClassesDir)/Recorder.h $(HeadersDir)/Recorder.cpp
-	$(CXX) -c $(HeadersDir)/Menu_func.cpp -o $(ObjDir)/Menu_func.o
+$(ObjDir)/Menu_func.o: $(Menu)
+	$(CXX) $(Flags) -c $(HeadersDir)/Menu_func.cpp -o $(ObjDir)/Menu_func.o
 
-$(ObjDir)/PathFinder.o: $(ClassesDir)/PathFinder.h $(HeadersDir)/PathFinder.cpp src/Airport.h $(HeadersDir)/Airport.cpp $(ClassesDir)/FlightData.h $(HeadersDir)/FlightData.cpp
-	$(CXX) -c $(HeadersDir)/PathFinder.cpp -o $(ObjDir)/PathFinder.o
+$(ObjDir)/PathFinder.o: $(PathFinder)
+	$(CXX) $(Flags) -c $(HeadersDir)/PathFinder.cpp -o $(ObjDir)/PathFinder.o
 
-$(ObjDir)/Recorder.o: $(ClassesDir)/Recorder.h $(HeadersDir)/Recorder.cpp $(ClassesDir)/FlightInfo.h $(HeadersDir)/FlightInfo.cpp $(ClassesDir)/UserInfo.h $(HeadersDir)/UserInfo.cpp
-	$(CXX) -c $(HeadersDir)/Recorder.cpp -o $(ObjDir)/Recorder.o
+$(ObjDir)/Recorder.o: $(Recorder)
+	$(CXX) $(Flags) -c $(HeadersDir)/Recorder.cpp -o $(ObjDir)/Recorder.o
 
-$(ObjDir)/Route.o: $(ClassesDir)/Route.h $(HeadersDir)/Route.cpp
-	$(CXX) -c $(HeadersDir)/Route.cpp -o $(ObjDir)/Route.o
+$(ObjDir)/Route.o: $(Route)
+	$(CXX) $(Flags) -c $(HeadersDir)/Route.cpp -o $(ObjDir)/Route.o
 
-$(ObjDir)/UserData.o: src/Airport.h $(HeadersDir)/Airport.cpp $(ClassesDir)/UserData.h $(HeadersDir)/UserData.cpp $(ClassesDir)/Counter.h $(HeadersDir)/Counter.cpp $(ClassesDir)/UserInfo.h $(HeadersDir)/UserInfo.cpp
-	$(CXX) -c $(HeadersDir)/UserData.cpp -o $(ObjDir)/UserData.o
+$(ObjDir)/UserData.o: $(UserData)
+	$(CXX) $(Flags) -c $(HeadersDir)/UserData.cpp -o $(ObjDir)/UserData.o
 
-$(ObjDir)/UserInfo.o: src/Airport.h $(HeadersDir)/Airport.cpp $(ClassesDir)/UserInfo.h $(HeadersDir)/UserInfo.cpp $(ClassesDir)/Route.h $(HeadersDir)/Route.cpp $(ClassesDir)/Date.h $(HeadersDir)/Date.cpp
-	$(CXX) -c $(HeadersDir)/UserInfo.cpp -o $(ObjDir)/UserInfo.o
+$(ObjDir)/UserInfo.o: $(UserInfo)
+	$(CXX) $(Flags) -c $(HeadersDir)/UserInfo.cpp -o $(ObjDir)/UserInfo.o

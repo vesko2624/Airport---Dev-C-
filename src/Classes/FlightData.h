@@ -15,14 +15,16 @@ class FlightData{
 		Counter& get_counter();
 		void display();
 
+		void load_flights();
 		void add_flight();
 		void add_flight(FlightInfo& flight, bool auto_adjust_id = 0);
 		const int get_last_id();
-		bool get_flight_by_id(FlightInfo* flight, const int& id);	
+		bool get_flight_by_id(FlightInfo& flight, const int& id);
+		bool change_flight_by_id(const int& id);
 		vector<FlightInfo> get_flights_by_departure_city(string city);
 		vector<FlightInfo> get_flights_by_arrival_city(string city);
 		vector<FlightInfo>& get_flights();
-		int getsize();
+		int get_size();
 	private:
 		vector<FlightInfo> flights_;
 		Counter counter_;

@@ -13,14 +13,15 @@ UserData::UserData(Counter& counter): counter_(counter){
 Counter& UserData::get_counter(){
 	return counter_;
 }
+
 void UserData::display(){
-//	if(!flights_.size()) cout << "There is nothing to display.\n"; // Add error codes
 	cout << '\n';
 	for(int i = 0; i < users_.size(); ++i){
 		users_[i].display();
 		cout << '\n';
 	}
 }
+
 const int UserData::get_last_id(){
 	int max = 0;
 	for(int i = 0; i < users_.size(); ++i) if(users_[i].id_ > max) max = users_[i].id_;
@@ -81,6 +82,7 @@ void UserData::add_user(UserInfo& user, bool auto_adjust_id){
 		counter_.add_user(user);
 	}
 }
+
 bool UserData::get_user_by_id(UserInfo* user, const int& id){
 	for(int i = 0; i < users_.size(); ++i)
 		if(users_[i].id_ == id){
@@ -89,21 +91,25 @@ bool UserData::get_user_by_id(UserInfo* user, const int& id){
 		}
 	return false;
 }
+
 vector<UserInfo> UserData::get_users_by_departure_city(string city){
 	vector<UserInfo> users_from_city;
 	for(int i = 0; i < users_.size(); ++i)
 		if(users_[i].route_.get_departure() == city) users_from_city.push_back(users_[i]);
 	return users_from_city;
 }
+
 vector<UserInfo> UserData::get_users_by_arrival_city(string city){
 	vector<UserInfo> users_to_city;
 	for(int i = 0; i < users_.size(); ++i)
 		if(users_[i].route_.get_arrival() == city) users_to_city.push_back(users_[i]);
 	return users_to_city;
 }
+
 vector<UserInfo>& UserData::get_users(){
 	return users_;
 }
-int UserData::getsize(){
+
+int UserData::get_size(){
 	return users_.size();
 }

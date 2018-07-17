@@ -12,11 +12,14 @@ using std::cout;
 class FlightInfo{
 	public:
 		FlightInfo();
-//		FlightInfo(const string& departure, const string& arrival,const string& departure_time, const string& arrival_time, const double& price);
 		
 		bool read();
-		void display();
-		Route get_route();
+		void display() const;
+		
+		Route get_route() const;
+		Date get_departure_time() const;
+		Date get_arrival_time() const;
+		double get_price() const;
 	private:
 		static long long kLastFlightId_;
 		int id_;
@@ -26,6 +29,7 @@ class FlightInfo{
 		
 		friend class Recorder;
 		friend class FlightData;
+		friend class PathFinder;
 };
 
 #endif

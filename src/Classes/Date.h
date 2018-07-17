@@ -8,15 +8,17 @@ using std::string;
 class Date{
 	public:
 		Date();
-		Date(int day, int month, int year, int hour, int minute);
+		Date(const int& day, const int& month, const int& year, const int& hour, const int& minute);
 		
 		bool read();
 		void display() const;
 		
-		void set_date(int day, int month, int year, int hour, int minute);
+		void set_date(const int& day, const int& month, const int& year, const int& hour, const int& minute);
 		string get_as_string();
+		
+		friend bool operator<(const Date&, const Date&);
 	private:
-		int Day_,Month_,Year_,Hour_,Minute_;
+		int day_, month_, year_, hour_, minute_;
 };
 
 #endif

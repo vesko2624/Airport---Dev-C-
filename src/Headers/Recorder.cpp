@@ -1,11 +1,10 @@
 #include "../Classes/Recorder.h"
-using namespace std;
 
 Recorder::Recorder(){
 	User_file = false;
 	Flight_file = false;
-	Input_File_Flights.open("DataBase/Flight_Records.txt");
-	Input_File_Users.open("DataBase/User_Records.txt");
+	Input_File_Flights.open("../src/DataBase/Flight_Records.txt");
+	Input_File_Users.open("../src/DataBase/User_Records.txt");
 }
 Recorder::~Recorder(){
 	if(Flight_file)
@@ -49,7 +48,7 @@ bool Recorder::Read_User(UserInfo& temp){
 }
 void Recorder::Reload_Flight_Records_file(){
 	Input_File_Flights.close();
-	Input_File_Flights.open("Flight_Records.txt");
+	Input_File_Flights.open("../src/DataBase/Flight_Records.txt");
 }
 
 void Recorder::Close_flight_folder(){
@@ -62,24 +61,24 @@ void Recorder::Close_user_folder(){
 }
 
 void Recorder::Open_flight_folder(){
-	Flight_Output_File.open( "DataBase/Flight_Records.txt");
+	Flight_Output_File.open("../src/DataBase/Flight_Records.txt");
 	Flight_file = true;
 }
 void Recorder::Open_user_folder(){
-	User_Output_File.open( "DataBase/User_Records.txt");
+	User_Output_File.open("../src/DataBase/User_Records.txt");
 	User_file = true;
 }
 
-void Recorder::Record_FlightData(FlightData& FlDt){
+void Recorder::Record_FlightData(FlightData& flights){
 	Open_flight_folder();
-	for(int i = 0;i < FlDt.flights_.size(); i++)
-		Record_Flight(FlDt.flights_[i]);
+	for(int i = 0;i < flights.flights_.size(); ++i)
+		Record_Flight(flights.flights_[i]);
 	Close_flight_folder();
 }
 
-void Recorder::Record_UserData(UserData& UsrDt){
+void Recorder::Record_UserData(UserData& users){
 	Open_user_folder();
-	for(int i = 0;i < UsrDt.users_.size(); i++)
-		Record_User(UsrDt.users_[i]);
+	for(int i = 0;i < users.users_.size(); ++i)
+		Record_User(users.users_[i]);
 	Close_user_folder();
 }

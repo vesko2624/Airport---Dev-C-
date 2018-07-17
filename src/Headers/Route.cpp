@@ -1,6 +1,6 @@
 #include "../Classes/Route.h"
 
-// Read() and Display() for both departure and arrival
+// Methods
 void Route::read_departure(){
 	cin >> departure_;
 }

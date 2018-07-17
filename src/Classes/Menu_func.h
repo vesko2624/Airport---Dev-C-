@@ -1,21 +1,23 @@
 #include <iostream>
-#include "FlightData.h"
-#include "UserData.h"
+#include "PathFinder.h"
 #include "Recorder.h"
 
 #ifndef _Menufunc_
 #define _Menufunc_
 
-void make_choice(FlightData&, UserData&);
-void Make_flight_record(FlightData&);
-void Make_user_record(UserData&);
-void Change_flight_id(FlightData& flights);
-void Display_all_flights(FlightData& flights);
-void Display_all_users(UserData& users);
-void Find_flight_by_request();
-void Find_flights_city_hour();
-void Find_city_with_most_flights(FlightData& flights);
-void Find_city_with_most_users(UserData& users); 
-void Record_in_file(FlightData& flights,UserData& users); 
+void flights_menu(FlightData&);
+void users_menu(UserData&);
+void main_menu(FlightData&, UserData&);
+
+void make_flight_record(FlightData&);
+void make_user_record(UserData&);
+void change_flight_id(FlightData& flights);
+void display_all_flights(FlightData& flights);
+void display_all_users(UserData& users);
+void seek_for_route(FlightData& flights);
+void find_flights_city_hour(FlightData& flights);
+void find_city_with_most_flights(FlightData& flights);
+void find_city_with_most_users(UserData& users); 
+void record_in_file(FlightData& flights,UserData& users); 
 
 #endif

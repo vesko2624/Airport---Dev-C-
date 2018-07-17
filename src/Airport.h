@@ -11,7 +11,7 @@ using std::streamsize;
 #ifndef AIRPORT_H
 #define AIRPORT_H
 
-void Clear_cin();
+void clear_cin();
 
 template<class T, class S> // Convert variable of type T to variable of type S
 T get(S variable){         // For example get<string>(5) returns "5";
@@ -31,8 +31,8 @@ bool validate_cin(T& choice, T min = -3211233, T max = -3211233){
 		if(choice < min) to_return = false;
 	if(has_max)
 		if(choice > max) to_return = false;
-	if(!to_return) cout<<" Bad input! \n "; 
-	Clear_cin();
+	if(!to_return) cout<<"\tBad input! \n"; 
+	clear_cin();
 	return to_return;
 }
 

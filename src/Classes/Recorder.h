@@ -1,8 +1,7 @@
 #include <fstream>
 #include "FlightData.h"
 #include "UserData.h"
-using std::ofstream;
-using std::ifstream;
+using std::ifstream; using std::ofstream;
 
 #ifndef _Recorder_
 #define _Recorder_
