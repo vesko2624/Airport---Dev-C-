@@ -271,9 +271,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit23]
-FileName=main.cpp
+FileName=src\main.cpp
 CompileCpp=1
-Folder=
+Folder=src
 Compile=1
 Link=1
 Priority=1000

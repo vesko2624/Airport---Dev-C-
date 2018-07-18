@@ -20,7 +20,7 @@ FlightData = $(Airport) $(Recorder)
 UserData = $(Airport) $(Recorder)
 PathFinder = $(Airport) $(FlightData) $(HeadersDir)/PathFinder.cpp $(ClassesDir)/PathFinder.h
 Menu = $(Airport) $(PathFinder) $(Recorder) $(HeadersDir)/Menu_func.cpp $(ClassesDir)/Menu_func.h
-Main = $(Airport) $(Menu)
+Main = $(Airport) $(Menu) src/main.cpp
 OBJECTS := $(ObjDir)/Airport.o $(ObjDir)/Counter.o $(ObjDir)/Date.o $(ObjDir)/FlightData.o $(ObjDir)/FlightInfo.o $(ObjDir)/main.o $(ObjDir)/Menu_func.o $(ObjDir)/PathFinder.o $(ObjDir)/Recorder.o $(ObjDir)/Route.o $(ObjDir)/UserData.o $(ObjDir)/UserInfo.o
 Flags = -std=c++0x
 
@@ -33,7 +33,7 @@ all: create $(OBJECTS)
 	$(CXX) $(Flags) -o bin/Airport $(OBJECTS)
 
 $(ObjDir)/main.o: $(Main)
-	$(CXX) $(Flags) -c main.cpp -o $(ObjDir)/main.o
+	$(CXX) $(Flags) -c src/main.cpp -o $(ObjDir)/main.o
 
 $(ObjDir)/Airport.o: $(Airport)
 	$(CXX) $(Flags) -c $(HeadersDir)/Airport.cpp -o $(ObjDir)/Airport.o

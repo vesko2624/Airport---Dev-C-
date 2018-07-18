@@ -1,5 +1,5 @@
-#include "src/Airport.h"
-#include "src/Classes/Menu_func.h"
+#include "Airport.h"
+#include "Classes/Menu_func.h"
 //stanislav.dimov@quanterall.com
 
 int main(){
