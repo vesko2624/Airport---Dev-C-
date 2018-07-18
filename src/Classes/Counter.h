@@ -1,8 +1,8 @@
 #include <vector>
+#include <unordered_map>
 #include "UserInfo.h"
 #include "FlightInfo.h"
-
-using std::vector;
+using std::unordered_map;
 using std::pair;
 
 #ifndef COUNTER_H
@@ -19,11 +19,13 @@ class Counter{
 		Counter();
 		void add_flight(FlightInfo&);
 		void add_user(UserInfo& user);
-		vector< pair<int, string> > get_list(vector<FlightInfo>& flights);
-		bool count_flight_departure(string& city, int& num_flight) const;
-		bool count_flight_frequent_requests(string& city, int& num_requests) const;
+		unordered_map<string, int> get_list() const;
+		bool count_flight_departure(string& city, int& num_flight);
+		bool count_flight_frequent_requests(string& city, int& num_requests);
 	private:
-		vector<container> cities_;
-		vector<container> requests_;
+		unordered_map<string, int> cities_;
+		unordered_map<string, int> requests_;
+		
+		unordered_map<string, int> total_cities_;
 };
 #endif

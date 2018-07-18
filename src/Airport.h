@@ -13,7 +13,7 @@ using std::streamsize;
 
 void clear_cin();
 
-template<class T, class S> // Convert variable of type T to variable of type S
+template<class T, class S> // Convert variable of type S to variable of type T
 T get(S variable){         // For example get<string>(5) returns "5";
 	T temp;
 	stringstream stream;

@@ -3,7 +3,7 @@ HeadersDir = src/Headers
 ClassesDir = src/Classes
 
 create:
-	-if not exist bin mkdir bin\objects
+	-if not exist bin\objects mkdir bin\objects
 	-if not exist src\DataBase mkdir src\DataBase
 	-if not exist src\DataBase\"Flight_Records.txt" type NULL > src\DataBase\Flight_Records.txt
 	-if not exist src\DataBase\"User_Records.txt" type NULL > src\DataBase\User_Records.txt
